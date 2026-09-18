@@ -1,0 +1,17 @@
+*, *::before, *::after {
+  box-sizing: border-box; 
+  margin: 0;             
+  padding: 0;            
+}
+
+
+h1 {
+    color: white;
+}
+
+Body {
+    background-color: #0c82b8;
+    font-family: Arial, sans-serif;
+    color: white;
+    padding: 20px;
+}
