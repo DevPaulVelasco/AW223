@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio de Paul</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Css/style.css">
 </head>
 <body>
-    <header>
-        <nav aria-label="Navegación principal">
-            <a href="#inicio">Inicio</a>
-            <a href="#sobre-mi">Sobre mí</a>
-            <a href="#habilidades">Habilidades</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+    <header class="top-banner">
+        <div class="banner-content">
+            <p class="banner-tag">Desarrollo web</p>
+            <h1>Mi Portafolio</h1>
+        </div>
     </header>
 
+    <nav aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
     <main id="inicio">
-        <section>
+        <section class="seccion-inicio">
             <div>
                 <h1 id="titulo-principal">Hola, soy Paul</h1>
                 <p>Soy un desarrollador web.</p>
@@ -26,7 +31,7 @@
             </div>
         </section>
 
-        <section id="sobre-mi">
+        <section  id="sobre-mi">
             <h2 id="sobre-mi-titulo">Sobre mí</h2>
 
             <figure>
@@ -57,25 +62,24 @@
         </section>
 
         <section id="contacto">
-            <h2>Contactame</h2>
-            <form action="">
-                <div>
-                    <label for="">Nombre</label>
-                    <input type="text">
-                    <button>Enviar</button>
-                </div>
-                <div>
-                    <label for="">Correo electrónico</label>
-                    <input type="email">
-                    <button>Enviar</button>
-
+            <h2>Contáctame</h2>
+            <form class="contact-form" action="#" method="post">
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre">
                 </div>
 
-                <div>
-                    <label for="">Mensaje</label>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>Enviar</button>
+                <div class="campo">
+                    <label for="email">Correo electrónico</label>
+                    <input id="email" name="email" type="email" placeholder="tu@email.com">
                 </div>
+
+                <div class="campo">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje"></textarea>
+                </div>
+
+                <button type="submit">Enviar</button>
             </form>
         </section>
     </main>
