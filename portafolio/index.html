@@ -24,26 +24,26 @@
 
     <main id="inicio">
         <section class="seccion-inicio">
-            <div>
+            <div class="seccion-contenido">
                 <h1 id="titulo-principal">Hola, soy Paul</h1>
                 <p>Soy un desarrollador web.</p>
-                <a href="#proyectos">Ver mis proyectos</a>
+                <a class="boton" href="#proyectos">Ver mis proyectos</a>
             </div>
         </section>
 
         <section  id="sobre-mi">
             <h2 id="sobre-mi-titulo">Sobre mí</h2>
 
-            <figure>
-                <img src="#" alt="mi portafolio">
-                <figcaption>Este wallpaper me gusta mucho. :D</figcaption>
+            <figure class="sobre-mi-contenido">
+                <img src="./foto-de-perfil.jpg" alt="mi portafolio">
+                <figcaption> Desarrollador Web y Movil multiplataforma con React-native</figcaption>
             </figure>
         </section>
 
 
         <section id="habilidades">
             <h2>Habilidades</h2>
-            <ul>
+            <ul class="lista-habilidades">
                 <li>HTML</li>
                 <li>CSS</li>
                 <li>JavaScript</li>
@@ -55,10 +55,17 @@
         <section id="proyectos">
             <h2 id="proyectos-titulo">Mis Proyectos</h2>
 
-            <article>
-                <h3>Sistema Integral de Gestión de Proyectos</h3>
-                <p>Proyecto empresarial.</p>
-            </article>
+            <div class="contenedor-proyectos">
+                <article class="proyecto">
+                    <h3>Sistema Integral de Gestión de Proyectos</h3>
+                    <p>Proyecto empresarial.</p>
+                </article>
+
+                <article class="proyecto">
+                    <h3>Proyecto integrador</h3>
+                    <p>Diseño y desarrollo de mi portfolio profesional.</p>
+                </article>
+            </div>
         </section>
 
         <section id="contacto">
@@ -83,5 +90,10 @@
             </form>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Paul Velasco. Todos los derechos reservados.</p>
+        <p>Mi portafolio Web Practica de programacion</p>
+    </footer>
 </body>
 </html>

@@ -52,6 +52,7 @@ nav a{
 nav a:hover{
     background-color: #1c91f1;
     color: #ffffff;
+    border-radius: 5px;
 }
 
 main{
@@ -71,7 +72,6 @@ section h2{
     color: #1c91f1;
 }
 
-
 .seccion-inicio{
     min-height: 400px;
     display: flex;
@@ -80,3 +80,112 @@ section h2{
     text-align: center;
 }
 
+.seccion-contenido{
+    max-width: 800px;
+}
+
+.seccion-contenido h1{
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.seccion-contenido h2{
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.seccion-contenido p{
+    font-size: 18px;
+    margin-bottom: 30px;
+}   
+
+.boton,button{
+    display: inline-block;
+    padding: 12px 25px;
+    border: none;
+    background-color: #1c91f1;
+    Border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.boton:hover,button:hover{
+    background-color: #0f7ad8;
+}
+
+/* Sobre mi */
+
+.sobre-mi-contenido{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sobre-mi-contenido img{
+    width: 200px;
+    height: 200pxs;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Habilidades */
+
+.lista-habilidades{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+.lista-habilidades li{
+    padding: 12px 20px;
+    background-color: #1c91f1;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 3px solid #0f7ad8;
+    font-weight: bold;
+}
+
+.contenedor-proyectos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.proyecto{
+    flex: 1 1 250px;
+    min-width: 250px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.proyecto h3{
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #1c91f1;
+}
+
+.proyecto a{
+    color: #1c91f1;
+    font-weight: bold;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    background-color: #1c91f1;
+    color: #ffffff;
+}
