@@ -11,6 +11,7 @@
         <div class="banner-content">
             <p class="banner-tag">Desarrollo web</p>
             <h1>Mi Portafolio</h1>
+            <button id="cambiar-bienvenida" type="button">Cambiar bienvenida</button>
         </div>
     </header>
 
@@ -50,6 +51,10 @@
                 <li>React</li>
                 <li>Node.js</li>
             </ul>
+            <div class="controles-habilidades">
+                <button id="cambiar-color-habilidades" type="button">Cambiar color</button>
+                <button id="cambiar-fuente-habilidades" type="button">Cambiar tipografía</button>
+            </div>
         </section>
 
         <section id="proyectos">
@@ -70,15 +75,15 @@
 
         <section id="contacto">
             <h2>Contáctame</h2>
-            <form class="contact-form" action="#" method="post">
+            <form class="contact-form" action="#" method="post" novalidate>
                 <div class="campo">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre">
+                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
                 </div>
 
                 <div class="campo">
                     <label for="email">Correo electrónico</label>
-                    <input id="email" name="email" type="email" placeholder="tu@email.com">
+                    <input id="email" name="email" type="email" placeholder="tu@email.com" required>
                 </div>
 
                 <div class="campo">
@@ -89,6 +94,8 @@
                 <button type="submit">Enviar</button>
             </form>
         </section>
+
+        
     </main>
 
     <footer>
@@ -96,4 +103,5 @@
         <p>Mi portafolio Web Practica de programacion</p>
     </footer>
 </body>
+<script src="../Js/script.js" defer></script>
 </html>

@@ -154,6 +154,13 @@ section h2{
     font-weight: bold;
 }
 
+.controles-habilidades {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
 .contenedor-proyectos{
     display: flex;
     flex-wrap: wrap;
