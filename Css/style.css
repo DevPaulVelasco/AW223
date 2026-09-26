@@ -183,9 +183,84 @@ section h2{
     font-weight: bold;
 }
 
+/* Formulario */
+
+.contact-form{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.campo{
+    margin-bottom: 20px;
+}
+
+.campo label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.campo input,
+.campo textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.campo textarea{
+    resize: vertical;
+}
+
 footer{
     text-align: center;
     padding: 20px;
     background-color: #1c91f1;
     color: #ffffff;
+
 }
+
+@media (max-width: 600px){
+    header{
+        padding: 40px 20px 30px;
+    }
+
+    header h1{
+        font-size: 36px;
+    }
+
+    nav{
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    section{
+        padding: 40px 20px;
+    }
+
+    section h2{
+        font-size: 30px;
+    }
+
+    .seccion-contenido h1{
+        font-size: 34px;
+    }
+
+    .sobre-mi-contenido{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-form{
+        padding: 15px;
+    }
+}
+
+
