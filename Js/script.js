@@ -22,25 +22,3 @@ botonFuente.addEventListener("click", () => {
     });
 });
 
-const formulario = document.querySelector(".contact-form");
-const campoNombre = document.getElementById("nombre");
-const campoEmail = document.getElementById("email");
-
-formulario.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-
-    if (campoNombre.value.trim() === "") {
-        alert("Por favor, escribe tu nombre.");
-        campoNombre.focus();
-        return;
-    }
-
-    if (campoEmail.value.trim() === "") {
-        alert("Por favor, escribe tu correo electrónico.");
-        campoEmail.focus();
-        return;
-    }
-
-    alert("¡Gracias! Los datos del formulario se enviaron correctamente.");
-    formulario.reset();
-});
