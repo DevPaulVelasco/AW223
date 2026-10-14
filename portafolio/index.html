@@ -21,7 +21,7 @@
         <a href="#habilidades">Habilidades</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#contacto">Contacto</a>
-        <a href="admin.php">AdminUltrasecreto</a>
+        <a href="admin.php">Admin</a>
     </nav>
 
     <main id="inicio">
@@ -76,23 +76,24 @@
 
         <section id="contacto">
             <h2>Contáctame</h2>
-            <form class="contact-form" action="guardar_mensaje.php" method="post">
+            <form class="contact-form" id="formulario-contacto" action="guardar_mensaje.php" method="post">
                 <div class="campo">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+                    <input id="nombre" name="txtnombre" type="text" placeholder="Tu nombre" required>
                 </div>
 
                 <div class="campo">
                     <label for="email">Correo electrónico</label>
-                    <input id="email" name="email" type="email" placeholder="tu@email.com" required>
+                    <input id="email" name="txtemail" type="email" placeholder="tu@email.com" required>
                 </div>
 
                 <div class="campo">
                     <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje" required></textarea>
+                    <textarea id="mensaje" name="txtmensaje" rows="6" placeholder="Escribe tu mensaje" required></textarea>
                 </div>
 
                 <button type="submit">Enviar</button>
+                <p id="formulario-estado" role="status" aria-live="polite"></p>
             </form>
         </section>
 

@@ -1,13 +1,12 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     exit('Método no permitido.');
 }
 
-$nombre = trim($_POST['nombre'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$mensaje = trim($_POST['mensaje'] ?? '');
+$nombre = trim($_POST['txtnombre'] ?? '');
+$email = trim($_POST['txtemail'] ?? '');
+$mensaje = trim($_POST['txtmensaje'] ?? '');
 
 if ($nombre === '' || $email === '' || $mensaje === '') {
     http_response_code(400);
@@ -19,17 +18,15 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit('Escribe un correo electrónico válido.');
 }
 
-require __DIR__ . '/conexion.php';
+require_once __DIR__ . '/conexion.php';
 
-$sql = 'INSERT INTO mensajes (nombre, email, mensaje)
-        VALUES (:nombre, :email, :mensaje)';
+$stmt = $conexion->prepare(
+    'INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)'
+);
+$stmt->bind_param('sss', $nombre, $email, $mensaje);
+$stmt->execute();
+$stmt->close();
+$conexion->close();
 
-$consulta = $conexion->prepare($sql);
-$consulta->execute([
-    ':nombre' => $nombre,
-    ':email' => $email,
-    ':mensaje' => $mensaje,
-]);
-
-header('Location: index.html?enviado=1');
+header('Location: index.html?enviado=1#contacto');
 exit;

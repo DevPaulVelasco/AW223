@@ -22,3 +22,8 @@ botonFuente.addEventListener("click", () => {
     });
 });
 
+const estadoFormulario = document.getElementById("formulario-estado");
+
+if (estadoFormulario && new URLSearchParams(window.location.search).has("enviado")) {
+    estadoFormulario.textContent = "Tu mensaje se envió correctamente.";
+}

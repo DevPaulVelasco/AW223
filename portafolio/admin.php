@@ -1,15 +1,18 @@
 <?php
-require __DIR__ . '/conexion.php';
+require_once __DIR__ . '/conexion.php';
 
-$consulta = $conexion->query(
-    'SELECT id, nombre, email, mensaje, fecha
+$resultado = $conexion->query(
+    'SELECT id, nombre, correo, mensaje, timeStap
      FROM mensajes
-     ORDER BY fecha DESC'
+     ORDER BY timeStap DESC'
 );
 
-$mensajes = $consulta->fetchAll();
+if (!$resultado) {
+    http_response_code(500);
+    exit('No se pudieron consultar los mensajes: ' . htmlspecialchars($conexion->error, ENT_QUOTES, 'UTF-8'));
+}
 
-function escapar($valor)
+function escaparHtml($valor)
 {
     return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
 }
@@ -21,74 +24,6 @@ function escapar($valor)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración | Mi portafolio</title>
     <link rel="stylesheet" href="../Css/style.css">
-    <style>
-        .admin-contenido {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .admin-regreso {
-            display: inline-block;
-            margin: 10px 0 20px;
-            color: #1c91f1;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .tabla-contenedor {
-            overflow-x: auto;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-        }
-
-        .tabla-mensajes {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .tabla-mensajes th,
-        .tabla-mensajes td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .tabla-mensajes th {
-            background-color: #1c91f1;
-            color: #ffffff;
-        }
-
-        .acciones {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .icono-accion {
-            padding: 8px 10px;
-            border: 0;
-            border-radius: 5px;
-            color: #ffffff;
-            font-size: 16px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .icono-editar {
-            background-color: #0f7ad8;
-        }
-
-        .icono-borrar {
-            background-color: #c9302c;
-        }
-
-        .sin-mensajes {
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <header class="top-banner">
@@ -105,57 +40,28 @@ function escapar($valor)
 
         <h2>Mensajes recibidos</h2>
 
-        <?php if (count($mensajes) > 0): ?>
-            <div class="tabla-contenedor">
-                <table class="tabla-mensajes">
-                    <thead>
+        <div class="tabla-contenedor">
+            <table class="tabla-mensajes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Mensaje</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($mensaje = $resultado->fetch_assoc()): ?>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Mensaje</th>
-                            <th>Fecha</th>
-                            <th>Acciones</th>
+                            <td><?= escaparHtml($mensaje['nombre']) ?></td>
+                            <td><?= escaparHtml($mensaje['correo']) ?></td>
+                            <td><?= nl2br(escaparHtml($mensaje['mensaje'])) ?></td>
+                            <td><?= escaparHtml($mensaje['timeStap']) ?></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($mensajes as $mensaje): ?>
-                            <tr>
-                                <td><?= escapar($mensaje['nombre']) ?></td>
-                                <td><?= escapar($mensaje['email']) ?></td>
-                                <td><?= nl2br(escapar($mensaje['mensaje'])) ?></td>
-                                <td><?= escapar($mensaje['fecha']) ?></td>
-                                <td>
-                                    <div class="acciones">
-                                        <a
-                                            class="icono-accion icono-editar"
-                                            href="editar.php?id=<?= (int) $mensaje['id'] ?>"
-                                            aria-label="Editar mensaje"
-                                            title="Editar"
-                                        >Editar</a>
-
-                                        <form action="borrar_mensaje.php" method="post">
-                                            <input
-                                                type="hidden"
-                                                name="id"
-                                                value="<?= (int) $mensaje['id'] ?>"
-                                            >
-                                            <button
-                                                class="icono-accion icono-borrar"
-                                                type="submit"
-                                                aria-label="Borrar mensaje"
-                                                title="Borrar"
-                                            >Borrar</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php else: ?>
-            <p class="sin-mensajes">Todavía no hay mensajes recibidos.</p>
-        <?php endif; ?>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 </html>

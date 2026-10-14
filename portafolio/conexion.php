@@ -1,15 +1,14 @@
 <?php
-
-$host = 'localhost';
-$baseDeDatos = 'portafolio_db';
+$servidor = 'localhost';
 $usuario = 'root';
 $contrasena = '';
+$baseDatos = 'mensajes';
 
-$dsn = "mysql:host=$host;dbname=$baseDeDatos;charset=utf8mb4";
+$conexion = new mysqli($servidor, $usuario, $contrasena, $baseDatos);
 
-$opciones = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
+if ($conexion->connect_errno) {
+    http_response_code(500);
+    exit('No se pudo conectar a la base de datos: ' . htmlspecialchars($conexion->connect_error, ENT_QUOTES, 'UTF-8'));
+}
 
-$conexion = new PDO($dsn, $usuario, $contrasena, $opciones);
+$conexion->set_charset('utf8mb4');
