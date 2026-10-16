@@ -18,15 +18,16 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit('Escribe un correo electrónico válido.');
 }
 
-require_once __DIR__ . '/conexion.php';
+require 'conexion.php';
 
 $stmt = $conexion->prepare(
     'INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)'
 );
 $stmt->bind_param('sss', $nombre, $email, $mensaje);
-$stmt->execute();
+
+$estado = $stmt->execute() ? 'exito' : 'error';
 $stmt->close();
 $conexion->close();
 
-header('Location: index.html?enviado=1#contacto');
+header('Location: index.php?estado=' . $estado . '#contacto');
 exit;

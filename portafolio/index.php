@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -104,6 +104,7 @@
         <p>&copy; 2026 Paul Velasco. Todos los derechos reservados.</p>
         <p>Mi portafolio Web Practica de programacion</p>
     </footer>
+    <script src="../Js/script.js" defer></script>
+    <script src="../Js/AlertInsert.js" defer></script>
 </body>
-<script src="../Js/script.js" defer></script>
 </html>

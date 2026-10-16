@@ -228,59 +228,93 @@ section h2{
 /* Vistas de administracion */
 
 .admin-contenido{
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
+    padding: 40px 24px 64px;
+}
+
+.admin-intro{
+    margin-bottom: 24px;
+}
+
+.admin-intro h2{
+    margin: 0 0 8px;
+    color: #1c91f1;
+    font-size: 32px;
+}
+
+.admin-intro p{
+    margin: 0;
+    color: #536273;
 }
 
 .admin-regreso{
     display: inline-block;
-    margin: 10px 0 20px;
+    margin: 0 0 14px;
     color: #1c91f1;
     font-weight: bold;
     text-decoration: none;
 }
 
+.admin-regreso:hover,
+.admin-cancelar:hover{
+    text-decoration: underline;
+}
+
 .tabla-contenedor{
     overflow-x: auto;
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e4eaf1;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(15, 55, 90, 0.08);
 }
 
 .tabla-mensajes{
     width: 100%;
+    min-width: 780px;
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .tabla-mensajes th,
 .tabla-mensajes td{
-    padding: 14px 16px;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 16px;
+    border-bottom: 1px solid #e8edf3;
     text-align: left;
     vertical-align: top;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
 }
 
 .tabla-mensajes th{
     background-color: #1c91f1;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .tabla-mensajes th:nth-child(1){
-    width: 20%;
+    width: 15%;
+}
+
+.tabla-mensajes th:nth-child(2){
+    width: 21%;
 }
 
 .tabla-mensajes th:nth-child(3){
-    width: 40%;
+    width: 30%;
 }
 
-.tabla-mensajes th:nth-child(2),
 .tabla-mensajes th:nth-child(4){
-    width: 20%;
+    width: 17%;
+}
+
+.tabla-mensajes th:nth-child(5){
+    width: 17%;
+}
+
+.tabla-mensajes td:nth-child(4){
+    white-space: nowrap;
 }
 
 .tabla-mensajes tbody tr:nth-child(even){
@@ -293,6 +327,67 @@ section h2{
 
 .tabla-mensajes tbody tr:last-child td{
     border-bottom: 0;
+}
+
+.tabla-mensajes form{
+    margin: 0;
+}
+
+.admin-acciones{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-contenido button{
+    padding: 9px 14px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.admin-contenido .admin-boton-borrar{
+    background-color: #d94b4b;
+}
+
+.admin-contenido .admin-boton-borrar:hover{
+    background-color: #bd3636;
+}
+
+.admin-contenido .admin-boton-guardar{
+    background-color: #198754;
+}
+
+.admin-contenido .admin-boton-guardar:hover{
+    background-color: #146c43;
+}
+
+.admin-cancelar{
+    display: inline-block;
+    margin-top: 8px;
+    color: #536273;
+    font-size: 14px;
+}
+
+.tabla-mensajes input,
+.tabla-mensajes textarea{
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #ccd6e0;
+    border-radius: 5px;
+    font: inherit;
+}
+
+.tabla-mensajes textarea{
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-vacio{
+    padding: 36px 16px !important;
+    color: #536273;
+    text-align: center !important;
 }
 
 footer{
@@ -340,6 +435,14 @@ footer{
     }
 
     .tabla-mensajes{
-        min-width: 600px;
+        min-width: 780px;
+    }
+
+    .admin-contenido{
+        padding: 28px 16px 48px;
+    }
+
+    .admin-intro h2{
+        font-size: 28px;
     }
 }

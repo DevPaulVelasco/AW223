@@ -1,21 +1,35 @@
 <?php
-require_once __DIR__ . '/conexion.php';
+require 'conexion.php';
+require 'consulta_mensajes.php';
 
-$resultado = $conexion->query(
-    'SELECT id, nombre, correo, mensaje, timeStap
-     FROM mensajes
-     ORDER BY timeStap DESC'
-);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int) ($_POST['id'] ?? 0);
 
-if (!$resultado) {
-    http_response_code(500);
-    exit('No se pudieron consultar los mensajes: ' . htmlspecialchars($conexion->error, ENT_QUOTES, 'UTF-8'));
+    if (($_POST['accion'] ?? '') === 'borrar') {
+        $consulta = $conexion->prepare('DELETE FROM mensajes WHERE id = ?');
+        $consulta->bind_param('i', $id);
+        $consulta->execute();
+        $consulta->close();
+    } elseif (($_POST['accion'] ?? '') === 'guardar') {
+        $nombre = trim($_POST['nombre'] ?? '');
+        $correo = trim($_POST['correo'] ?? '');
+        $mensaje = trim($_POST['mensaje'] ?? '');
+
+        $consulta = $conexion->prepare(
+            'UPDATE mensajes SET nombre = ?, correo = ?, mensaje = ? WHERE id = ?'
+        );
+        $consulta->bind_param('sssi', $nombre, $correo, $mensaje, $id);
+        $consulta->execute();
+        $consulta->close();
+    }
+
+    header('Location: admin.php');
+    exit;
 }
 
-function escaparHtml($valor)
-{
-    return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
-}
+$resultado = consultaMensajes();
+$editarId = (int) ($_GET['editar'] ?? 0);
+$hayMensajes = mysqli_num_rows($resultado) > 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,11 +48,13 @@ function escaparHtml($valor)
     </header>
 
     <main class="admin-contenido">
-        <a class="admin-regreso" href="index.html" aria-label="Regresar al portafolio">
-            ← Volver al portafolio
-        </a>
-
-        <h2>Mensajes recibidos</h2>
+        <div class="admin-intro">
+            <div>
+                <a class="admin-regreso" href="index.php">← Volver al portafolio</a>
+                <h2>Mensajes recibidos</h2>
+                <p>Consulta y administra los mensajes enviados desde el formulario de contacto.</p>
+            </div>
+        </div>
 
         <div class="tabla-contenedor">
             <table class="tabla-mensajes">
@@ -48,16 +64,52 @@ function escaparHtml($valor)
                         <th>Correo</th>
                         <th>Mensaje</th>
                         <th>Fecha</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($mensaje = $resultado->fetch_assoc()): ?>
+                    <?php if (!$hayMensajes): ?>
                         <tr>
-                            <td><?= escaparHtml($mensaje['nombre']) ?></td>
-                            <td><?= escaparHtml($mensaje['correo']) ?></td>
-                            <td><?= nl2br(escaparHtml($mensaje['mensaje'])) ?></td>
-                            <td><?= escaparHtml($mensaje['timeStap']) ?></td>
+                            <td class="admin-vacio" colspan="5">Todavía no hay mensajes.</td>
                         </tr>
+                    <?php endif; ?>
+                    <?php while ($mensaje = mysqli_fetch_assoc($resultado)): ?>
+                        <?php if ($editarId === (int) $mensaje['id']): ?>
+                            <tr>
+                                <td><input form="editar-mensaje-<?= (int) $mensaje['id'] ?>" name="nombre" value="<?= htmlspecialchars($mensaje['nombre'], ENT_QUOTES, 'UTF-8') ?>" required></td>
+                                <td><input form="editar-mensaje-<?= (int) $mensaje['id'] ?>" name="correo" type="email" value="<?= htmlspecialchars($mensaje['correo'], ENT_QUOTES, 'UTF-8') ?>" required></td>
+                                <td><textarea form="editar-mensaje-<?= (int) $mensaje['id'] ?>" name="mensaje" required><?= htmlspecialchars($mensaje['mensaje'], ENT_QUOTES, 'UTF-8') ?></textarea></td>
+                                <td><?= htmlspecialchars($mensaje['timeStap'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
+                                    <form class="admin-acciones" id="editar-mensaje-<?= (int) $mensaje['id'] ?>" method="post">
+                                        <input type="hidden" name="accion" value="guardar">
+                                        <input type="hidden" name="id" value="<?= (int) $mensaje['id'] ?>">
+                                        <button class="admin-boton-guardar" type="submit">Guardar</button>
+                                    </form>
+                                    <a class="admin-cancelar" href="admin.php">Cancelar</a>
+                                </td>
+                            </tr>
+                        <?php else: ?>
+                            <tr>
+                                <td><?= htmlspecialchars($mensaje['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($mensaje['correo'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= nl2br(htmlspecialchars($mensaje['mensaje'], ENT_QUOTES, 'UTF-8')) ?></td>
+                                <td><?= htmlspecialchars($mensaje['timeStap'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
+                                    <div class="admin-acciones">
+                                    <form method="post">
+                                        <input type="hidden" name="accion" value="borrar">
+                                        <input type="hidden" name="id" value="<?= (int) $mensaje['id'] ?>">
+                                        <button class="admin-boton-borrar" type="submit">Borrar</button>
+                                    </form>
+                                    <form method="get">
+                                        <input type="hidden" name="editar" value="<?= (int) $mensaje['id'] ?>">
+                                        <button type="submit">Editar</button>
+                                    </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
                     <?php endwhile; ?>
                 </tbody>
             </table>
