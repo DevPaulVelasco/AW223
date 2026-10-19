@@ -4,11 +4,12 @@ require 'consulta_mensajes.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = (int) ($_POST['id'] ?? 0);
+    $estado = 'error';
 
     if (($_POST['accion'] ?? '') === 'borrar') {
         $consulta = $conexion->prepare('DELETE FROM mensajes WHERE id = ?');
         $consulta->bind_param('i', $id);
-        $consulta->execute();
+        $estado = $consulta->execute() ? 'borrado' : 'error';
         $consulta->close();
     } elseif (($_POST['accion'] ?? '') === 'guardar') {
         $nombre = trim($_POST['nombre'] ?? '');
@@ -23,11 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'UPDATE mensajes SET nombre = ?, correo = ?, mensaje = ? WHERE id = ?'
         );
         $consulta->bind_param('sssi', $nombre, $correo, $mensaje, $id);
-        $consulta->execute();
+        $estado = $consulta->execute() ? 'actualizado' : 'error';
         $consulta->close();
     }
 
-    header('Location: admin.php');
+    header('Location: admin.php?estado=' . $estado);
     exit;
 }
 
@@ -60,6 +61,20 @@ $hayMensajes = mysqli_num_rows($resultado) > 0;
     <link rel="stylesheet" href="../Css/style.css">
 </head>
 <body>
+    <?php
+    $avisos = [
+        'actualizado' => 'Mensaje actualizado correctamente.',
+        'borrado' => 'Mensaje borrado correctamente.',
+        'error' => 'Ocurrió un error al guardar los cambios.',
+        'vacios' => 'No se permiten campos vacíos.',
+    ];
+
+    $estadoAviso = $_GET['estado'] ?? '';
+
+    if (isset($avisos[$estadoAviso])) {
+        echo '<script>alert(' . json_encode($avisos[$estadoAviso]) . ');</script>';
+    }
+    ?>
     <header class="top-banner">
         <div class="banner-content">
             <p class="banner-tag">Desarrollo web</p>
