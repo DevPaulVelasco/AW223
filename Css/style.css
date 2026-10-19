@@ -249,16 +249,85 @@ section h2{
 }
 
 .admin-regreso{
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
     margin: 0 0 14px;
-    color: #1c91f1;
+    color: #ffffff;
+    font-size: 26px;
     font-weight: bold;
+    background-color: #1c91f1;
+    border-radius: 8px;
     text-decoration: none;
+    box-shadow: 0 4px 12px rgba(28, 145, 241, 0.2);
 }
 
 .admin-regreso:hover,
-.admin-cancelar:hover{
-    text-decoration: underline;
+.admin-cancelar:hover,
+.admin-btn-home:hover{
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.admin-top-actions{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.admin-btn-home{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    background-color: #1c91f1;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(28, 145, 241, 0.2);
+}
+
+.admin-editar-panel{
+    background-color: #ffffff;
+    border: 1px solid #e4eaf1;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(15, 55, 90, 0.08);
+    padding: 28px;
+}
+
+.admin-editar-form{
+    display: grid;
+    gap: 18px;
+}
+
+.admin-editar-form label{
+    display: block;
+    margin-bottom: 8px;
+    color: #1a2a3a;
+    font-weight: bold;
+}
+
+.admin-editar-form input,
+.admin-editar-form textarea{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccd6e0;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.admin-editar-form textarea{
+    min-height: 150px;
+    resize: vertical;
+}
+
+.admin-acciones-editar{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .tabla-contenedor{
