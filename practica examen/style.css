@@ -1,0 +1,386 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+img {
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.header {
+    background-color: #fafafafa;
+    padding: 150px 0 100px 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu nav ul li{
+    position: relative;
+    float: left;
+
+}
+
+.menu nav ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: #323232;
+    display: block;
+}
+
+.menu nav ul li a:hover{
+    color: #f47302;
+}
+
+.logo{
+    font-size: 25px;
+    font-weight: 800;
+    color: #02b1f4;
+    text-transform: uppercase;
+}
+#menu{
+    display: none;
+}
+
+.menu-icon{
+    width: 24px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
+}
+
+body {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 400;
+}
+
+h1,
+h2 {
+    font-family: "Cal Sans", sans-serif;
+}
+
+.menu nav a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.header-text {
+    width: 50%;
+}
+
+.header-text h1 {
+    font-size: 60px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.header-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.header-img {
+    width: 50%;
+}
+
+.btn-1{
+    display: inline-block;
+    padding: 11px 25px;
+    background-color: #02b1f4;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.about {
+    padding: 100px 0;
+    display: flex;
+}
+
+.about-img {
+    width: 50%;
+}
+
+.about-img img {
+    border-radius: 15px;
+    width: 500px;
+}
+
+.about-text {
+    width: 50%;
+    padding-left: 25px;
+}
+
+.about-text h2 {
+    font-size: 40px;
+    color: #323232;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #818181;
+
+}
+
+main.servicios {
+    padding: 50px 0 100px;
+    background-color: #fafafa;
+}
+
+.servicios h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.servicios-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.servicio-1,
+.servicio-2,
+.servicio-3,
+.servicio-4 {
+    flex: 1;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.servicio-1 h3,
+.servicio-2 h3,
+.servicio-3 h3,
+.servicio-4 h3 {
+    font-size: 25px;
+    color: #323232;
+    margin: 15px 0;
+}
+
+.servicio-1 p,
+.servicio-2 p,
+.servicio-3 p,
+.servicio-4 p {
+    color: #818181;
+    line-height: 1.5;
+}
+
+.formulario {
+    padding: 80px 0;
+}
+
+.formulario form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.formulario h2 {
+    margin-bottom: 25px;
+    color: #323232;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-container input,
+.input-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font: inherit;
+}
+
+.input-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #02b1f4;
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 20px;
+    background-color: #ffffff;
+}
+
+.footer-content .link {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-content .link a {
+    color: #323232;
+}
+
+.footer-content .link a:hover {
+    color: #02b1f4;
+}
+
+.tabla-registros {
+    padding: 40px 0;
+    overflow-x: auto;
+}
+
+.tabla-registros h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tabla-registros table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-registros th,
+.tabla-registros td {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    text-align: left;
+}
+
+.tabla-registros th {
+    background-color: #fafafa;
+}
+
+.acciones form {
+    display: inline;
+}
+
+.acciones button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #02b1f4;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        z-index: 2;
+        padding: 20px;
+        background-color: #ffffff;
+    }
+
+    .menu label {
+        display: block;
+    }
+
+    .menu nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        background-color: #ffffff;
+    }
+
+    #menu:checked ~ nav {
+        display: block;
+    }
+
+    .menu nav ul li {
+        float: none;
+    }
+
+    .menu nav ul li a {
+        padding: 15px 20px;
+        border-top: 1px solid #eeeeee;
+    }
+
+    .header {
+        padding: 120px 20px 50px;
+        min-height: auto;
+    }
+
+    .header-content {
+        flex-direction: column;
+    }
+
+    .header-text,
+    .header-img {
+        width: 100%;
+    }
+
+    .header-text h1 {
+        font-size: 42px;
+    }
+
+    .about {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-img,
+    .about-text {
+        width: 100%;
+    }
+
+    .about-text {
+        padding-left: 0;
+    }
+
+    .servicios-content {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-content .link {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
