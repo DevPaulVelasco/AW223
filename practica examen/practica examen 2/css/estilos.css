@@ -1,0 +1,295 @@
+/* Estilos de presentación: este archivo no contiene HTML ni PHP. */
+:root {
+    color-scheme: light;
+    --fondo: #f7f5f0;
+    --superficie: #ffffff;
+    --texto: #24231f;
+    --suave: #6e6b63;
+    --principal: #a9472c;
+    --principal-oscuro: #87371f;
+    --borde: #e8e3d9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+.contenedor {
+    width: min(1080px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.encabezado {
+    background: var(--superficie);
+    border-bottom: 1px solid var(--borde);
+}
+
+.encabezado-contenido,
+.titulo-seccion,
+.acciones-formulario,
+.acciones-producto,
+.fila-carrito {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.encabezado-contenido {
+    min-height: 70px;
+}
+
+.marca {
+    color: var(--principal);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.enlace-carrito {
+    color: var(--texto);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.presentacion {
+    padding: 66px 0 42px;
+}
+
+.presentacion h1 {
+    max-width: 650px;
+    margin: 4px 0 12px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.08;
+}
+
+.presentacion > p:last-child,
+.texto-ayuda {
+    color: var(--suave);
+}
+
+.etiqueta {
+    margin: 0;
+    color: var(--principal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin: 4px 0 18px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.8rem;
+}
+
+.titulo-seccion {
+    margin-bottom: 18px;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.producto,
+.panel {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+}
+
+.producto {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.producto h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+}
+
+.producto p {
+    margin: 0 0 18px;
+    color: var(--suave);
+}
+
+.producto .precio {
+    margin-top: auto;
+    margin-bottom: 14px;
+    color: var(--texto);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.acciones-producto {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.boton-cantidad {
+    min-width: 42px;
+    min-height: 40px;
+    padding: 6px 12px;
+    font-size: 1.25rem;
+}
+
+.boton-cantidad:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.boton {
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 7px;
+    background: var(--principal);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.boton:hover {
+    background: var(--principal-oscuro);
+}
+
+.boton-secundario {
+    border: 1px solid var(--borde);
+    background: #fff;
+    color: var(--texto);
+}
+
+.boton-secundario:hover {
+    background: var(--fondo);
+}
+
+.boton-pequeno {
+    padding: 7px 10px;
+    font-size: 0.85rem;
+}
+
+.panel {
+    margin-top: 40px;
+    padding: 24px;
+}
+
+.carrito {
+    margin-top: 48px;
+}
+
+.fila-carrito {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borde);
+}
+
+.carrito-producto {
+    flex: 1;
+}
+
+.carrito-producto small {
+    display: block;
+    color: var(--suave);
+}
+
+.cantidad {
+    display: inline-block;
+    min-width: 26px;
+    text-align: center;
+}
+
+.total {
+    margin: 18px 0 0;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.campos-formulario {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+}
+
+.campos-formulario label {
+    display: grid;
+    gap: 6px;
+    font-weight: 700;
+}
+
+.campos-formulario input,
+.campos-formulario textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: #fff;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.acciones-formulario {
+    justify-content: flex-start;
+    margin-top: 16px;
+}
+
+.mensaje {
+    margin: 0 0 18px;
+    color: var(--principal-oscuro);
+    font-weight: 700;
+}
+
+.pie {
+    margin-top: 56px;
+    padding: 20px 16px;
+    color: var(--suave);
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .presentacion {
+        padding-top: 44px;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .campos-formulario {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .titulo-seccion {
+        align-items: flex-start;
+    }
+}
