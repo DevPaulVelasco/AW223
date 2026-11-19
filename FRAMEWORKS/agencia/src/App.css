@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.contenedor-principal {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.contador {
+  background-color: #ff4757;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.input-busqueda {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.grid-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.cuerpo-tarjeta {
+  padding: 15px;
+}
+
+.precio {
+  color: #2ed573;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.descripcion {
+  background-color: #f1f2f6;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.contenedor-botones {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-favorito-activo {
+  background-color: #ff4757;
+  color: white;
+}
+
+.btn-favorito-inactivo {
+  background-color: #e4e4e4;
+  color: #333;
+}
+
+.btn-detalles {
+  background-color: #1e90ff;
+  color: white;
+}
