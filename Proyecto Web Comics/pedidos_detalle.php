@@ -84,7 +84,12 @@ include 'includes/sidebar.php';
         <div class="modal-box">
             <h2 class="modal-title">Detalles de <?php echo htmlspecialchars($id_pedido); ?></h2>
 
-            <table class="modal-table">
+            <table class="modal-table" id="tabla-detalles-pedido">
+                <caption style="caption-side: top; text-align: left; padding-bottom: 8px;">
+                    <button type="button" class="btn-filtro" data-export-target="#tabla-detalles-pedido" data-export-filename="detalle-<?php echo htmlspecialchars($id_pedido); ?>.csv">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar detalle
+                    </button>
+                </caption>
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -98,8 +103,8 @@ include 'includes/sidebar.php';
                         <tr>
                             <td style="font-weight: 600;"><?php echo htmlspecialchars($item['producto']); ?></td>
                             <td style="text-align: center;"><?php echo $item['cantidad']; ?></td>
-                            <td><?php echo $item['precio_unit']; ?></td>
-                            <td style="font-weight: 700;"><?php echo $item['subtotal']; ?></td>
+                            <td><?php echo htmlspecialchars($item['precio_unit']); ?></td>
+                            <td style="font-weight: 700;"><?php echo htmlspecialchars($item['subtotal']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -104,6 +104,9 @@ include 'includes/sidebar.php';
             <a href="pedidos_nuevo.php" class="btn-nuevo-rojo">
                 + Crear pedido
             </a>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-pedidos" data-export-filename="pedidos.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
         </div>
     </div>
 
@@ -116,7 +119,7 @@ include 'includes/sidebar.php';
     </div>
 
     <!-- Tabla de Pedidos -->
-    <div class="komix-table-container">
+    <div class="komix-table-container" id="tabla-pedidos">
         <div class="table-header-row" style="grid-template-columns: 1.2fr 2fr 1.5fr 100px 1.5fr 120px;">
             <div>ID pedido:</div>
             <div>Proveedor:</div>
@@ -137,7 +140,7 @@ include 'includes/sidebar.php';
                     <div><?php echo htmlspecialchars($p['proveedor']); ?></div>
                     <div style="color: #555;"><?php echo htmlspecialchars($p['fecha']); ?></div>
                     <div style="text-align: center;">
-                        <span class="badge-estado <?php echo $p['estado']; ?>"></span>
+                        <span class="badge-estado <?php echo $p['estado']; ?>" aria-label="<?php echo $p['estado'] === 'verde' ? 'Recibido' : ($p['estado'] === 'rojo' ? 'Cancelado' : 'Pendiente'); ?>"></span>
                     </div>
                     <div style="font-weight: 700;"><?php echo htmlspecialchars($p['costo']); ?></div>
                     <div class="table-actions" style="justify-content: flex-end;">

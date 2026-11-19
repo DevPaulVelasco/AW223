@@ -58,6 +58,9 @@ include 'includes/sidebar.php';
             <a href="comics_nuevo.php" class="btn-nuevo-rojo" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-plus"></i> + Nuevo comic
             </a>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-comics" data-export-filename="comics.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
         </div>
     </div>
 
@@ -88,7 +91,7 @@ include 'includes/sidebar.php';
     </div>
 
     <!-- Tabla de Cómics -->
-    <div class="komix-table-container">
+    <div class="komix-table-container" id="tabla-comics">
         <div class="table-header-row" style="grid-template-columns: 2fr 1.5fr 1.2fr 1.2fr 1.2fr 100px;">
             <div>Titulo:</div>
             <div>Editorial:</div>

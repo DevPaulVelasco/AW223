@@ -64,11 +64,14 @@ include 'includes/sidebar.php';
                 <input type="checkbox" data-filter="stock-bajo" aria-label="Mostrar solo productos con stock bajo">
                 <span class="toggle-slider"></span>
             </label>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-inventario" data-export-only="stock-bajo" data-export-filename="productos-faltantes.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar faltantes
+            </button>
         </div>
     </div>
 
     <!-- Tabla de Inventario -->
-    <div class="komix-table-container">
+    <div class="komix-table-container" id="tabla-inventario">
         <div class="table-header-row" style="grid-template-columns: 2fr 1.5fr 1fr 1fr 100px;">
             <div>Nombre:</div>
             <div>Tipo(comic/articulo)</div>
@@ -84,7 +87,7 @@ include 'includes/sidebar.php';
                 <div style="font-weight: 600;"><?php echo $inv['stock_actual']; ?></div>
                 <div style="color: #666;"><?php echo $inv['stock_minimo']; ?></div>
                 <div style="text-align: center;">
-                    <span class="badge-estado <?php echo $inv['estado']; ?>"></span>
+                    <span class="badge-estado <?php echo $inv['estado']; ?>" aria-label="<?php echo $inv['stock_actual'] < $inv['stock_minimo'] ? 'Stock bajo' : 'Stock suficiente'; ?>"></span>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -66,6 +66,9 @@ include 'includes/sidebar.php';
             <a href="usuarios_nuevo.php" class="btn-nuevo-rojo" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-plus"></i> Crear nuevo usuario
             </a>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-usuarios" data-export-filename="usuarios.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
         </div>
     </div>
 

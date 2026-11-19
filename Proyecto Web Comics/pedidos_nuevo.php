@@ -156,9 +156,12 @@ include 'includes/sidebar.php';
             <a href="pedidos.php" class="btn-ticket-action" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; padding: 8px 16px;">
                 <i class="fa-solid fa-arrow-left"></i> Volver al listado
             </a>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-pedidos-edicion" data-export-filename="pedidos.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar pedidos
+            </button>
         </div>
 
-        <div class="komix-table-container">
+        <div class="komix-table-container" id="tabla-pedidos-edicion">
             <div class="table-header-row" style="grid-template-columns: 1.2fr 1.8fr 1.3fr 90px 1.3fr 110px;">
                 <div>ID:</div>
                 <div>Proveedor:</div>
@@ -189,7 +192,7 @@ include 'includes/sidebar.php';
                         <div><?php echo htmlspecialchars($p['proveedor']); ?></div>
                         <div style="color: #555;"><?php echo htmlspecialchars($p['fecha']); ?></div>
                         <div style="text-align: center;">
-                            <span class="badge-estado <?php echo $p['estado']; ?>"></span>
+                            <span class="badge-estado <?php echo $p['estado']; ?>" aria-label="<?php echo $p['estado'] === 'verde' ? 'Recibido' : ($p['estado'] === 'rojo' ? 'Cancelado' : 'Pendiente'); ?>"></span>
                         </div>
                         <div style="font-weight: 700;"><?php echo htmlspecialchars($p['costo']); ?></div>
                         <div class="table-actions" style="justify-content: flex-end;">

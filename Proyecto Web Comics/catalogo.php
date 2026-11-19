@@ -44,10 +44,13 @@ $comics_catalogo = [
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" class="input-busqueda-pill" placeholder="Buscador">
         </div>
+        <button type="button" class="btn-filtro" data-export-target="#catalogo-comics" data-export-filename="catalogo-comics.csv">
+            <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar catálogo
+        </button>
     </div>
 
     <!-- Cuadrícula de Portadas de Cómics -->
-    <div class="catalogo-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 300px)); justify-content: center; gap: 32px;">
+    <div class="catalogo-grid" id="catalogo-comics" style="grid-template-columns: repeat(auto-fit, minmax(240px, 300px)); justify-content: center; gap: 32px;">
         <?php foreach ($comics_catalogo as $comic): ?>
             <div class="comic-card catalogo-card">
                 <img 

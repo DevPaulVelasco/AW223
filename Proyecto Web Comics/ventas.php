@@ -92,6 +92,9 @@ include 'includes/sidebar.php';
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="search" class="input-busqueda-pill" placeholder="Buscador" id="buscador-comics" aria-label="Buscar cómics">
             </div>
+            <button type="button" class="btn-filtro" data-export-target="#catalogo-grid" data-export-filename="catalogo-venta.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar catálogo
+            </button>
         </div>
 
         <div class="catalogo-grid" id="catalogo-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">

@@ -425,6 +425,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 }
 
@@ -1066,6 +1067,58 @@ button, input, select, textarea {
   margin-bottom: 12px;
 }
 
+.dashboard-filters {
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  background: #ffffff;
+  border: 1px solid var(--color-gris-borde);
+  border-radius: 12px;
+}
+
+.dashboard-filters h2 {
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.dashboard-filters p {
+  margin-bottom: 14px;
+  color: var(--color-texto-muted);
+  font-size: 0.85rem;
+}
+
+.dashboard-filter-controls {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dashboard-filter-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.dashboard-filter-controls .dashboard-filter-search {
+  flex: 1 1 220px;
+}
+
+.dashboard-filter-controls .input-busqueda-pill {
+  width: 100%;
+}
+
+.dashboard-filter-controls .btn-filtro,
+.dashboard-filter-controls .input-fecha-white {
+  min-height: 40px;
+}
+
+.dashboard-filter-controls > button {
+  min-height: 40px;
+  cursor: pointer;
+}
+
 /* ---------------------------------------------------------
    13. GESTIÓN DE USUARIOS (Página 16)
    --------------------------------------------------------- */
@@ -1436,6 +1489,20 @@ input:checked + .toggle-slider:before {
   padding: 36px 32px;
   color: var(--color-texto-blanco);
   box-shadow: 0 10px 25px rgba(123, 8, 8, 0.25);
+}
+
+.standalone-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.standalone-form-actions > .btn-guardar-panel,
+.standalone-form-actions > .btn-cancelar-edicion {
+  flex: 1;
+  height: 38px;
+  margin-top: 0;
 }
 
 .standalone-form-header {

@@ -18,11 +18,11 @@ $top_productos = [
 ];
 
 $ultimos_movimientos = [
-    ['hora' => '12:40 PM', 'tipo' => 'Venta #104', 'monto' => '$754.00', 'usuario' => 'Mendoza'],
-    ['hora' => '12:40 PM', 'tipo' => 'Venta #103', 'monto' => '$754.00', 'usuario' => 'Mendoza'],
-    ['hora' => '11:15 AM', 'tipo' => 'Entrada Pedido #02', 'monto' => '$2,350.00', 'usuario' => 'Admin'],
-    ['hora' => '10:02 AM', 'tipo' => 'Venta #102', 'monto' => '$410.00', 'usuario' => 'García'],
-    ['hora' => '09:20 AM', 'tipo' => 'Venta #101', 'monto' => '$185.00', 'usuario' => 'Mendoza']
+    ['fecha' => '2024-06-18', 'hora' => '12:40 PM', 'tipo' => 'Venta #104', 'categoria' => 'venta', 'monto' => '$754.00', 'usuario' => 'Mendoza'],
+    ['fecha' => '2024-06-18', 'hora' => '12:40 PM', 'tipo' => 'Venta #103', 'categoria' => 'venta', 'monto' => '$754.00', 'usuario' => 'Mendoza'],
+    ['fecha' => '2024-06-17', 'hora' => '11:15 AM', 'tipo' => 'Entrada Pedido #02', 'categoria' => 'entrada', 'monto' => '$2,350.00', 'usuario' => 'Admin'],
+    ['fecha' => '2024-06-16', 'hora' => '10:02 AM', 'tipo' => 'Venta #102', 'categoria' => 'venta', 'monto' => '$410.00', 'usuario' => 'García'],
+    ['fecha' => '2024-06-15', 'hora' => '09:20 AM', 'tipo' => 'Venta #101', 'categoria' => 'venta', 'monto' => '$185.00', 'usuario' => 'Mendoza']
 ];
 ?>
 
@@ -55,6 +55,43 @@ $ultimos_movimientos = [
             <span class="kpi-value" data-metrica>$138.05</span>
         </div>
     </div>
+
+    <section class="dashboard-filters" aria-label="Filtros de las tablas del dashboard">
+        <h2>Filtros de tablas</h2>
+        <p>La búsqueda filtra productos y movimientos. Los demás filtros se aplican a los movimientos.</p>
+        <form id="dashboard-filter-form" class="dashboard-filter-controls">
+            <label class="dashboard-filter-search">
+                Buscar producto o movimiento
+                <input type="search" id="dashboard-busqueda" class="input-busqueda-pill" placeholder="Producto, venta o usuario">
+            </label>
+            <label>
+                Desde
+                <input type="date" id="dashboard-desde" class="input-fecha-white">
+            </label>
+            <label>
+                Hasta
+                <input type="date" id="dashboard-hasta" class="input-fecha-white">
+            </label>
+            <label>
+                Tipo de movimiento
+                <select id="dashboard-tipo" class="btn-filtro">
+                    <option value="">Todos</option>
+                    <option value="venta">Ventas</option>
+                    <option value="entrada">Entradas de inventario</option>
+                </select>
+            </label>
+            <label>
+                Usuario
+                <select id="dashboard-usuario" class="btn-filtro">
+                    <option value="">Todos</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="García">García</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </label>
+            <button type="reset" class="btn-filtro">Limpiar filtros</button>
+        </form>
+    </section>
 
     <!-- Gráfico de Ventas (Ventas en el Tiempo) -->
     <div class="chart-box-container">
@@ -95,7 +132,10 @@ $ultimos_movimientos = [
         <!-- Top 5 Productos más vendidos -->
         <div class="dashboard-panel-card">
             <h4>Top 5 Productos más vendidos</h4>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+            <button type="button" class="btn-filtro" data-export-target="#tabla-top-productos" data-export-filename="productos-mas-vendidos.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
+            <table id="tabla-top-productos" style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
                 <thead>
                     <tr style="text-align: left; color: #666; border-bottom: 1px solid #eee;">
                         <th style="padding: 6px 0;">Pos.</th>
@@ -106,13 +146,16 @@ $ultimos_movimientos = [
                 </thead>
                 <tbody>
                     <?php foreach ($top_productos as $tp): ?>
-                        <tr style="border-bottom: 1px solid #f2f2f2;">
+                        <tr data-dashboard-product style="border-bottom: 1px solid #f2f2f2;">
                             <td style="padding: 8px 0; font-weight: 700;"><?php echo $tp['pos']; ?></td>
                             <td style="font-weight: 600;"><?php echo htmlspecialchars($tp['producto']); ?></td>
                             <td><?php echo $tp['unidades']; ?></td>
                             <td style="font-weight: 700;"><?php echo $tp['total']; ?></td>
                         </tr>
                     <?php endforeach; ?>
+                    <tr data-dashboard-product-empty hidden>
+                        <td colspan="4" class="filter-empty-message">No se encontraron productos.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -120,7 +163,10 @@ $ultimos_movimientos = [
         <!-- Últimos Movimientos (Inventario y Ventas) -->
         <div class="dashboard-panel-card">
             <h4>Últimos Movimientos (Inventario y Ventas)</h4>
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
+            <button type="button" class="btn-filtro" data-export-target="#tabla-ultimos-movimientos" data-export-filename="ultimos-movimientos.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
+            <table id="tabla-ultimos-movimientos" style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
                 <thead>
                     <tr style="text-align: left; color: #666; border-bottom: 1px solid #eee;">
                         <th style="padding: 6px 0;">Hora/Fecha</th>
@@ -131,13 +177,22 @@ $ultimos_movimientos = [
                 </thead>
                 <tbody>
                     <?php foreach ($ultimos_movimientos as $um): ?>
-                        <tr style="border-bottom: 1px solid #f2f2f2;">
-                            <td style="padding: 8px 0;"><?php echo $um['hora']; ?></td>
+                        <tr
+                            data-dashboard-movement
+                            data-fecha="<?php echo htmlspecialchars($um['fecha']); ?>"
+                            data-tipo="<?php echo htmlspecialchars($um['categoria']); ?>"
+                            data-usuario="<?php echo htmlspecialchars($um['usuario']); ?>"
+                            style="border-bottom: 1px solid #f2f2f2;"
+                        >
+                            <td style="padding: 8px 0;"><?php echo htmlspecialchars($um['hora'] . ' · ' . date('d/m/Y', strtotime($um['fecha']))); ?></td>
                             <td style="font-weight: 600;"><?php echo htmlspecialchars($um['tipo']); ?></td>
                             <td style="font-weight: 700;"><?php echo $um['monto']; ?></td>
                             <td style="color: #555;"><?php echo htmlspecialchars($um['usuario']); ?></td>
                         </tr>
                     <?php endforeach; ?>
+                    <tr data-dashboard-empty hidden>
+                        <td colspan="4" class="filter-empty-message">No se encontraron movimientos con esos filtros.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

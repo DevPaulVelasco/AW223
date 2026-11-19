@@ -41,6 +41,43 @@
     });
   }
 
+  function aplicarFiltrosDashboard() {
+    const form = document.getElementById('dashboard-filter-form');
+    if (!form) return;
+
+    const consulta = form.querySelector('#dashboard-busqueda').value.trim().toLocaleLowerCase();
+    const desde = form.querySelector('#dashboard-desde').value;
+    const hasta = form.querySelector('#dashboard-hasta').value;
+    const tipo = form.querySelector('#dashboard-tipo').value;
+    const usuario = form.querySelector('#dashboard-usuario').value;
+
+    const productos = document.querySelectorAll('[data-dashboard-product]');
+    let productosVisibles = 0;
+    productos.forEach(function (producto) {
+      producto.hidden = consulta !== '' && !producto.textContent.toLocaleLowerCase().includes(consulta);
+      if (!producto.hidden) productosVisibles += 1;
+    });
+
+    const mensajeProductosVacio = document.querySelector('[data-dashboard-product-empty]');
+    if (mensajeProductosVacio) mensajeProductosVacio.hidden = productosVisibles > 0;
+
+    const movimientos = document.querySelectorAll('[data-dashboard-movement]');
+    let movimientosVisibles = 0;
+    movimientos.forEach(function (movimiento) {
+      const fecha = movimiento.dataset.fecha;
+      const coincideTexto = !consulta || movimiento.textContent.toLocaleLowerCase().includes(consulta);
+      const coincideDesde = !desde || fecha >= desde;
+      const coincideHasta = !hasta || fecha <= hasta;
+      const coincideTipo = !tipo || movimiento.dataset.tipo === tipo;
+      const coincideUsuario = !usuario || movimiento.dataset.usuario === usuario;
+      movimiento.hidden = !(coincideTexto && coincideDesde && coincideHasta && coincideTipo && coincideUsuario);
+      if (!movimiento.hidden) movimientosVisibles += 1;
+    });
+
+    const mensajeVacio = document.querySelector('[data-dashboard-empty]');
+    if (mensajeVacio) mensajeVacio.hidden = movimientosVisibles > 0;
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     const camposBusqueda = document.querySelectorAll('.input-busqueda-pill');
     camposBusqueda.forEach(function (campo) {
@@ -160,6 +197,16 @@
         const titulo = document.getElementById('titulo-grafico');
         if (titulo) titulo.textContent = 'Gráfico de Ventas (Ventas en el Tiempo) · ' + periodo.options[periodo.selectedIndex].text;
       });
+    }
+
+    const filtrosDashboard = document.getElementById('dashboard-filter-form');
+    if (filtrosDashboard) {
+      filtrosDashboard.addEventListener('input', aplicarFiltrosDashboard);
+      filtrosDashboard.addEventListener('change', aplicarFiltrosDashboard);
+      filtrosDashboard.addEventListener('reset', function () {
+        window.setTimeout(aplicarFiltrosDashboard, 0);
+      });
+      aplicarFiltrosDashboard();
     }
 
     aplicarFiltros();

@@ -54,6 +54,9 @@ include 'includes/sidebar.php';
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" class="input-busqueda-pill" placeholder="Buscador por folio o cliente" style="width: 320px;">
             </div>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-historial" data-export-filename="historial-ventas.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
         </div>
     </div>
 
@@ -76,7 +79,7 @@ include 'includes/sidebar.php';
     </div>
 
     <!-- Tabla del Historial de Ventas -->
-    <div class="komix-table-container">
+    <div class="komix-table-container" id="tabla-historial">
         <div class="table-header-row" style="grid-template-columns: 1.5fr 1.5fr 2fr 1.5fr 1fr 60px;">
             <div>Folio:</div>
             <div>Fecha:</div>
@@ -99,7 +102,7 @@ include 'includes/sidebar.php';
                     <div style="font-weight: 600;"><?php echo htmlspecialchars($t['cliente']); ?></div>
                     <div style="color: #444;"><?php echo htmlspecialchars($t['vendedor']); ?></div>
                     <div style="text-align: center;">
-                        <span class="badge-estado <?php echo $t['estado']; ?>"></span>
+                        <span class="badge-estado <?php echo $t['estado']; ?>" aria-label="<?php echo $t['estado'] === 'verde' ? 'Completada' : ($t['estado'] === 'rojo' ? 'Cancelada' : 'Pendiente'); ?>"></span>
                     </div>
                     <div class="table-actions" style="justify-content: flex-end;">
                         <!-- Botón Eliminar con Confirmación JavaScript -->

@@ -54,6 +54,9 @@ include 'includes/sidebar.php';
             <a href="articulos_nuevo.php" class="btn-nuevo-rojo" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-plus"></i> + Nuevo artículo
             </a>
+            <button type="button" class="btn-filtro" data-export-target="#tabla-articulos" data-export-filename="articulos.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
         </div>
     </div>
 
@@ -66,7 +69,7 @@ include 'includes/sidebar.php';
     </div>
 
     <!-- Tabla de Artículos -->
-    <div class="komix-table-container">
+    <div class="komix-table-container" id="tabla-articulos">
         <div class="table-header-row" style="grid-template-columns: 2fr 1.5fr 1.3fr 1.3fr 100px;">
             <div>Titulo:</div>
             <div>Volumen:</div>

@@ -50,9 +50,14 @@ include 'includes/sidebar.php';
 <div class="layout-con-panel-derecho">
     <!-- Columna Principal -->
     <main class="main-column">
-        <h1 class="page-title" style="margin-bottom: 24px;">Proveedores</h1>
+        <div class="content-header-row" style="margin-bottom: 24px;">
+            <h1 class="page-title">Proveedores</h1>
+            <button type="button" class="btn-filtro" data-export-target="#lista-proveedores" data-export-filename="proveedores.csv">
+                <i class="fa-solid fa-download" aria-hidden="true"></i> Descargar
+            </button>
+        </div>
 
-        <div class="proveedores-grid">
+        <div class="proveedores-grid" id="lista-proveedores">
             <?php foreach ($proveedores as $prov): ?>
                 <div class="proveedor-card">
                     <div class="proveedor-nombre"><?php echo htmlspecialchars($prov['nombre']); ?></div>

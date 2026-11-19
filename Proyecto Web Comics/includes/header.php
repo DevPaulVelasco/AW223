@@ -17,7 +17,7 @@ if (!isset($titulo_pagina)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($titulo_pagina); ?></title>
     <!-- Hoja de estilos en carpeta separada css/estilos.css -->
-    <link rel="stylesheet" href="css/estilos.css?v=10">
+    <link rel="stylesheet" href="css/estilos.css?v=11">
     <!-- FontAwesome o Lucide para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>

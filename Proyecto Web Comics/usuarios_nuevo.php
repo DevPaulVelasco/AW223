@@ -157,7 +157,7 @@ include 'includes/sidebar.php';
                     </div>
                 <?php endif; ?>
 
-                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                <div class="standalone-form-actions">
                     <button 
                         type="submit" 
                         class="btn-guardar-panel" 
